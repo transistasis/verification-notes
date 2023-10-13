@@ -9,8 +9,7 @@ import uvm_pkg::*;
 
 ## UVM Inheritance Structure
 
-![UVM Inheritance Structure](./images/uvm_inheritance.drawio.svg)
-<img src="./images/uvm_inheritance.drawio.svg">
+![UVM Inheritance Structure](./images/uvm_inheritance.png)
 
 ## Reference Manual
 
