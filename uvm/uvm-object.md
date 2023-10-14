@@ -1,5 +1,7 @@
 # UVM Object
 
+A _UVM Object_ is a dynamic element of a UVM testbench, such as a _uvm_transaction_ or a _uvm_sequence_item_.
+
 ## Extending uvm_object
 
 ```sv
@@ -13,7 +15,7 @@ class object_class extends uvm_object;
 endclass : object_class
 ```
 
-Note that macros do not require a semicolon at the end of them. Also, note that this code will not compile if a default argument value is not supplied to the constructor. 
+Note that macros do not require a semicolon at the end of them. Also, note that this code will not compile if a default argument value is not supplied to the constructor.
 
 ## Method Implementations
 
@@ -101,3 +103,28 @@ module tb;
 
 endmodule : tb
 ```
+
+### Create a Method
+
+Instead of using the `new` keyword to create objects, it is preferred to use the following pattern in the UVM:
+
+```sv
+module tb;
+
+  transaction tr;
+  driver      dr;
+
+  initial begin
+    // One argument since a transaction is dynamic and is derived from uvm_object
+    //    This is equivalent to: tr = new( "tr" );
+    tr = transaction::type_id::create( "tr" );
+
+    // Two arguments since a driver is static and is drived from uvm_component
+    //    This is equivalent to: dr = new( "dr", null );
+    dr = driver::type_id::create( "dr", null );
+  end
+
+endmodule : tb
+```
+
+Note that this invocation will not be used for _TLM Ports_, which will use the `new` keyword instead.
