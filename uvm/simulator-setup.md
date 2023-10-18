@@ -26,7 +26,7 @@ vlib work && vlog '-timescale' '1ns/1ns' '-dbg' design.sv testbench.sv  && vsim 
 +access+r
 ```
 
-#### Example run.do 
+#### Example run.do
 
 ```tcl
 # Report format can be "html" or "txt"
